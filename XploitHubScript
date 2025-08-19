@@ -1,1 +1,132 @@
--- im still making this...
+repeat
+	task.wait(0.1)
+until game:IsLoaded()
+task.wait(2)
+print("Starting")
+
+local gui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+local frame = Instance.new("Frame", gui)
+local textlabel = Instance.new("TextLabel", frame)
+local allGamesList = Instance.new("TextButton", frame)
+local close = Instance.new("TextButton", frame)
+local universal = Instance.new("TextButton", frame)
+
+frame.Size = UDim2.new(1,0,1,0)
+frame.BackgroundColor3 = Color3.new(1,1,1)
+frame.BackgroundTransparency = 0.5
+
+textlabel.Size = UDim2.new(1, 0,0.201, 0)
+textlabel.BackgroundTransparency = 1
+textlabel.TextColor3 = Color3.new(1,1,1)
+textlabel.TextStrokeColor3 = Color3.new(0,0,0)
+textlabel.TextScaled = true
+textlabel.TextStrokeTransparency = 0
+textlabel.Text = "Detecting game..."
+
+close.Size = UDim2.new(0.223, 0,0.064, 0)
+close.Position = UDim2.new(0.511, 0,0.623, 0)
+close.BackgroundColor3 = Color3.new(0.203922, 1, 0.0627451)
+close.TextColor3 = Color3.new(1,1,1)
+close.TextStrokeColor3 = Color3.new(0,0,0)
+close.TextStrokeTransparency = 1
+close.TextScaled = true
+close.Text = "Close"
+
+allGamesList.Position = UDim2.new(0.224, 0,0.623, 0)
+allGamesList.Size = UDim2.new(0.223, 0,0.064, 0)
+allGamesList.BackgroundColor3 = Color3.new(1, 0, 0.0156863)
+allGamesList.TextColor3 = Color3.new(1,1,1)
+allGamesList.TextStrokeColor3 = Color3.new(0,0,0)
+allGamesList.TextStrokeTransparency = 1
+allGamesList.TextScaled = true
+allGamesList.Text = "Preview all games"
+
+universal.Position = UDim2.new(0.37, 0,0.726, 0)
+universal.Size = UDim2.new(0.223, 0,0.064, 0)
+universal.BackgroundColor3 = Color3.new(0,0,0)
+universal.TextColor3 = Color3.new(1,1,1)
+universal.TextScaled = true
+universal.Text = "Universal Exploits"
+
+close.Visible = false
+allGamesList.Visible = false
+universal.Visible = false
+
+local currentPlace = 0
+print("Searching for: "..currentPlace)
+
+local placeIds = {
+	-- num: id, boolean: isLobby
+	[79546208627805] = {
+		Name = "99 nights in the forest | Lobby",
+		IsLobby = true,
+		loadScript = function()
+			print("Not correctly in game")
+		end,
+	},
+	[126509999114328] = {
+		Name = "99 nights in the forest | Game",
+		IsLobby = false,
+		loadScript = function()
+			loadstring(game:HttpGet('https://raw.githubusercontent.com/IWonTThingOfNake/Xploit-Hub-keyless-/refs/heads/main/99nightsintheforest-XploitHub'))()
+		end,
+	},
+}
+
+textlabel.Text = "Xploit Hub is in early release, you will find bugs."
+
+task.wait(1)
+
+if placeIds[currentPlace] then
+	print("Found game!")
+
+	local info = placeIds[currentPlace]
+
+	textlabel.Text = "Game Found: "..info.Name
+
+	task.wait(0.5)
+
+	if placeIds[currentPlace].IsLobby == true then
+		print("Game is lobby.")
+		textlabel.Text = "You're in the lobby, please enter the game."
+		task.wait(3)
+		gui:Destroy()
+	else
+		print("Game is correct!")
+		textlabel.Text = "Game found, injecting script..."
+		
+		info.loadScript()
+		
+		task.wait(3)
+		gui:Destroy()
+	end
+else
+	print("Game not found.")
+	textlabel.Text = "This game isn't in the list of games that exist in Xploit Hub."
+	close.Visible = true
+	allGamesList.Visible = true
+	universal.Visible = true
+end
+
+allGamesList.MouseButton1Click:Connect(function()
+	textlabel.Text = "Getting all places..."
+
+	local names = {}
+	for i, v in pairs(placeIds) do
+		if v.IsLobby == false then
+			table.insert(names, v.Name)
+		else
+			warn("This game is Lobby")
+		end
+	end
+
+	textlabel.Text = "Games: " .. table.concat(names, ", ")
+end)
+
+close.MouseButton1Click:Connect(function()
+	gui:Destroy()
+end)
+
+universal.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/IWonTThingOfNake/Xploit-Hub-keyless-/refs/heads/main/Universal-XploitHub'))()
+end)
