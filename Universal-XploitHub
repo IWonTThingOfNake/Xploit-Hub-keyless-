@@ -1,0 +1,27 @@
+local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/inceldom/kinx/main/ui'))()
+local window = UILib:Window("Universal | V1.0 | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+
+local Player = win:Tab("Player")
+
+local client = game.Players.LocalPlayer
+local char = client.Character
+
+Player:Slider("WalkSpeed",0,1000,16, function(t)
+	char.Humanoid.WalkSpeed = t
+end)
+
+Player:Slider("JumpPower",0,1000,50, function(t)
+	char.Humanoid.JumpPower = t
+end)
+
+local infJump = false
+
+Player:Toggle("Infinite Jump",false, function(t)
+	infJump = t
+end)
+
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if infJump then
+			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+		end
+end
