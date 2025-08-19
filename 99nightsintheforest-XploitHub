@@ -1,9 +1,14 @@
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/inceldom/kinx/main/ui'))()
-local win = library:Window("99 nights in the forest | V1.0 | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local win = library:Window("99 nights in the forest | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
 local Items = win:Tab("Items")
 local Player = win:Tab("Player")
+local Extras = win:Tab("Extras")
 
 local client = game.Players.LocalPlayer
+
+Extras:Button("Destroy Library", function()
+	library:Destroy()
+end)
 
 -- plr
 
