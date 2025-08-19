@@ -13,11 +13,9 @@ Items:Button("Store Logs - Old Sack", function()
 end)
 
 Items:Button("Store Logs - Good Sack", function()
-    Items:Button("Store Logs - Old Sack", function()
     for i = 1,15 do
         local log = workspace.Items:FindFirstChild("Log")
         client.Character.HumanoidRootPart.CFrame = log.Main.CFrame + Vector3.new(0,5,0)
         game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(client.Inventory["Good Sack"], log)
     end
-end)
 end)
