@@ -5,7 +5,7 @@ local Items = win:Tab("Items")
 local client = game.Players.LocalPlayer
 local char = client.Character
 
-Items:Button("Find Logs", function()
+Items:Button("Store Logs", function()
     for i,v in pairs(workspace.Items:GetChildren()) do 
         if v.Name == "Log" then
             char.HumanoidRootPart.CFrame = v.Main.CFrame + Vector3.new(0,5,0)
