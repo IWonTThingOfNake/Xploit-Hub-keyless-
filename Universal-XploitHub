@@ -4,14 +4,13 @@ local window = library:Window("Universal | V1.0 | Xploit Hub",Color3.fromRGB(44,
 local Player = window:Tab("Player")
 
 local client = game.Players.LocalPlayer
-local char = client.Character
 
 Player:Slider("WalkSpeed",0,1000,16, function(t)
-	char.Humanoid.WalkSpeed = t
+	client.Character.Humanoid.WalkSpeed = t
 end)
 
 Player:Slider("JumpPower",0,1000,50, function(t)
-	char.Humanoid.JumpPower = t
+	client.Character.Humanoid.JumpPower = t
 end)
 
 local infJump = false
@@ -22,6 +21,6 @@ end)
 
 game:GetService("UserInputService").JumpRequest:Connect(function()
     if infJump then
-			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+			client.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 		end
 end)
