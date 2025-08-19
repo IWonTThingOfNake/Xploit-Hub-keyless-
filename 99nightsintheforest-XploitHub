@@ -3,21 +3,21 @@ local win = library:Window("99 nights in the forest | V1.0 | Xploit Hub",Color3.
 local Items = win:Tab("Items")
 
 local client = game.Players.LocalPlayer
-local char = client.Character
 
-Items:Button("Store Logs", function()
-    for i,v in pairs(workspace.Items:GetChildren()) do 
-        if v.Name == "Log" then
-            char.HumanoidRootPart.CFrame = v.Main.CFrame + Vector3.new(0,5,0)
-
-            for i,v in pairs(workspace.Items:GetChildren()) do
-                local args = {
-                    game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Sack"),
-                    v
-                }
-
-                game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(unpack(args))
-            end
-        end
+Items:Button("Store Logs - Old Sack", function()
+    for i = 1,5 do
+        local log = workspace.Items:FindFirstChild("Log")
+        client.Character.HumanoidRootPart.CFrame = log.Main.CFrame + Vector3.new(0,5,0)
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(client.Inventory["Old Sack"], log)
     end
+end)
+
+Items:Button("Store Logs - Good Sack", function()
+    Items:Button("Store Logs - Old Sack", function()
+    for i = 1,15 do
+        local log = workspace.Items:FindFirstChild("Log")
+        client.Character.HumanoidRootPart.CFrame = log.Main.CFrame + Vector3.new(0,5,0)
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(client.Inventory["Good Sack"], log)
+    end
+end)
 end)
