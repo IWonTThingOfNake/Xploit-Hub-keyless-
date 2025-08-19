@@ -1,7 +1,3 @@
-repeat
-	task.wait(0.1)
-until game:IsLoaded()
-task.wait(2)
 print("Starting")
 
 local gui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
@@ -52,7 +48,7 @@ close.Visible = false
 allGamesList.Visible = false
 universal.Visible = false
 
-local currentPlace = 0
+local currentPlace = game.PlaceId
 print("Searching for: "..currentPlace)
 
 local placeIds = {
