@@ -3,7 +3,7 @@ local window = library:Window("Universal | V1.0 | Xploit Hub",Color3.fromRGB(44,
 
 local Extras = window:Tab("Extras")
 
-Extras:Button("Delete Xploit Hub", function()
+Extras:Button("Delete Library", function()
     library:Destroy()
 end)
 
