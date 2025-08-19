@@ -1,5 +1,5 @@
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/inceldom/kinx/main/ui'))()
-local window = library:Window("Universal | V1.0 | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local window = library:Window("Universal | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
 
 local Extras = window:Tab("Extras")
 
