@@ -1,6 +1,12 @@
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/inceldom/kinx/main/ui'))()
 local window = library:Window("Universal | V1.0 | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
 
+local Extras = window:Tab("Extras")
+
+Extras:Button("Delete Xploit Hub", function()
+    library:Destroy()
+end)
+
 local Player = window:Tab("Player")
 
 local client = game.Players.LocalPlayer
@@ -21,6 +27,6 @@ end)
 
 game:GetService("UserInputService").JumpRequest:Connect(function()
     if infJump then
-			client.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-		end
+		client.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	end
 end)
