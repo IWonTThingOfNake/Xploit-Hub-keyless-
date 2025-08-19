@@ -1,1 +1,23 @@
--- still making
+local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/inceldom/kinx/main/ui'))()
+local win = library:Window("99 nights in the forest | V1.0 | Xploit Hub",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local Items = win:Tab("Items")
+
+local client = game.Players.LocalPlayer
+local char = client.Character
+
+MainSection:Button("Find Logs", function()
+    for i,v in pairs(workspace.Items:GetChildren()) do 
+        if v.Name == "Log" then
+            char.HumanoidRootPart.CFrame = v.Main.CFrame + Vector3.new(0,5,0)
+
+            for i,v in pairs(workspace.Items:GetChildren()) do
+                local args = {
+                    game:GetService("Players").LocalPlayer:WaitForChild("Inventory"):WaitForChild("Old Sack"),
+                    v
+                }
+
+                game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("RequestBagStoreItem"):InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
