@@ -24,4 +24,4 @@ game:GetService("UserInputService").JumpRequest:Connect(function()
     if infJump then
 			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 		end
-end
+end)
